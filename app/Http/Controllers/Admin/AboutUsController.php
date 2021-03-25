@@ -285,7 +285,7 @@ class AboutUsController extends Controller
         $healthSafety->text1 = $request->text1;
         $healthSafety->text2 = $request->text2;
         $healthSafety->text3 = $request->text3;
-        $healthSafety->text4 = $request->text3;
+        $healthSafety->text4 = $request->text4;
 
         if ($request->path) {
             Storage::disk('public')->delete($healthSafety->path);
