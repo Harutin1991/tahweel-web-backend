@@ -43,13 +43,6 @@
                                           style="resize: none;" required>{{old('details_description')}}</textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="description">Date <strong class="text-danger"> &#42; </strong></label>
-                                @error('date')
-                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
-                                @enderror
-                                <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date" class="form-control" value="{{old('date')}}">
-                            </div>
 
                             <div class="form-group">
                                 <label for="logo">Upload Thumbnail <strong class="text-danger"> &#42; </strong></label>
@@ -57,6 +50,13 @@
                                 <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
                                 @enderror
                                 <input type="file" id="logo" name="logo" required class="dropify"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Date <strong class="text-danger"> &#42; </strong></label>
+                                @error('date')
+                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
+                                @enderror
+                                <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date" class="form-control" value="{{old('date')}}">
                             </div>
 
                             <div class="form-group">
@@ -112,10 +112,9 @@
     <!-- jQuery file upload -->
     <script src="{{asset('assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
 
-    <!-- Date picker plugins css -->
-    <link href="{{asset('assets/plugins/datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css"/>
-    <!-- Date Picker Plugin JavaScript -->
-    <script src="{{asset('assets/plugins/datepicker/bootstrap-datepicker.min.js')}}"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js' type='text/javascript'></script>
 
     <style>
         .swal-button--confirm, .swal-button--confirm:hover {

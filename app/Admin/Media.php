@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Admin;
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
@@ -11,7 +11,10 @@ class Media extends Model
         'newsletter' => 1,
         'pressRelease' => 2
     ];
-
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] =  Carbon::parse($value);
+    }
     protected $guarded = [];
 
     public function images()
