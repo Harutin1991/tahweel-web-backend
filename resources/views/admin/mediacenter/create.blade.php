@@ -27,6 +27,20 @@
                                           style="resize: none;" required>{{old('description')}}</textarea>
                             </div>
                             <div class="form-group">
+                                <label for="logo">Upload Thumbnail <strong class="text-danger"> &#42; </strong></label>
+                                @error('logo')
+                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
+                                @enderror
+                                <input type="file" id="logo" name="logo" required class="dropify"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Date <strong class="text-danger"> &#42; </strong></label>
+                                @error('date')
+                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
+                                @enderror
+                                <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date" class="form-control" value="{{old('date')}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="title">Details Title <strong class="text-danger"> &#42; </strong> </label>
                                 @error('details_title')
                                 <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
@@ -43,24 +57,8 @@
                                           style="resize: none;" required>{{old('details_description')}}</textarea>
                             </div>
 
-
                             <div class="form-group">
-                                <label for="logo">Upload Thumbnail <strong class="text-danger"> &#42; </strong></label>
-                                @error('logo')
-                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
-                                @enderror
-                                <input type="file" id="logo" name="logo" required class="dropify"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Date <strong class="text-danger"> &#42; </strong></label>
-                                @error('date')
-                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
-                                @enderror
-                                <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date" class="form-control" value="{{old('date')}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="logo">Upload Images and PDF </label>
+                                <label for="logo">Upload Details Image</label>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dynamic_field">
                                         <tr>
@@ -69,28 +67,17 @@
                                                     <b>Image</b>
                                                 </div>
 
-                                                <div class="col-xs-6">
-                                                    <b>Pdf</b>
-                                                </div>
                                             </td>
-                                            <td>
-                                                <b>Options</b>
-                                            </td>
+                                           
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="col-xs-6">
+                                                <div>
                                                     <input type="file" name="images[]" class="form-control input-md input_open image"/>
                                                 </div>
 
-                                                <div class="col-xs-6">
-                                                    <input type="file" name="pdf[]" class="form-control input_close pdf"/>
-                                                </div>
                                             </td>
 
-                                            <td align="center">
-                                                <button type="button" name="add" id="add" class="btn btn-info"><i class="fas fa-plus"></i></button>
-                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -104,6 +91,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('header')
@@ -141,6 +129,7 @@
         }).datepicker("setDate", new Date());
 
         $(document).ready(function () {
+            $('#ui-datepicker-div').css('display','none');
             var i = 1;
             $('#add').click(function () {
                 i++;
