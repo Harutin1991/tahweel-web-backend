@@ -30,6 +30,22 @@
                                           style="resize: none;" required>{{$data->description}}</textarea>
                             </div>
                             <div class="form-group">
+                                <label for="logo">Upload Thumbnail </label>
+                                @error('logo')
+                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
+                                @enderror
+                                <input type="file" id="logo" name="logo" class="dropify" data-default-file='{{asset("uploads/$data->logo")}}'/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Date <strong class="text-danger"> &#42; </strong></label>
+                                @error('date')
+                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
+                                @enderror
+                                <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date"
+                                       class="form-control" value="{{$data->date}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="title">Details Title <strong class="text-danger"> &#42; </strong> </label>
                                 @error('details_title')
                                 <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
@@ -48,42 +64,21 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <label for="logo">Upload Thumbnail </label>
-                                @error('logo')
-                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
-                                @enderror
-                                <input type="file" id="logo" name="logo" class="dropify" data-default-file='{{asset("uploads/$data->logo")}}'/>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Date <strong class="text-danger"> &#42; </strong></label>
-                                @error('date')
-                                <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
-                                @enderror
-                                <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date"
-                                       class="form-control" value="{{$data->date}}">
-                            </div>
+
 
                             <div class="form-group">
-                                <label for="logo">Upload Images and PDF </label>
+                                <label for="logo">Upload Details Image</label>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dynamic_field">
                                         <tr>
                                             <td>
-                                                <div class="col-xs-6">
+                                                <div>
                                                      <label for="logo">Image</label>
                                                     <input type="file" name="images[]" class="form-control input-md input_open"/>
                                                 </div>
-
-                                                <div class="col-xs-6">
-                                                    <label for="logo">Pdf</label>
-                                                    <input type="file" name="pdf[]" class="form-control input_close"/>
-                                                </div>
                                             </td>
 
-                                            <td style="text-align: center; vertical-align: middle;">>
-                                                <button type="button" name="add" id="add" class="btn btn-info"><i class="fas fa-plus"></i></button>
-                                            </td>
+
                                         </tr>
                                     </table>
                                 </div>
@@ -114,7 +109,6 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Image</th>
-                                    <th>Pdf</th>
                                     <th>Options</th>
                                 </tr>
                                 </thead>
@@ -127,11 +121,7 @@
                                                 <img src="{{ asset("/uploads/".$val->image)}}" class="img-responsive" width="200">
                                             @endif
                                         </td>
-                                        <td>
-                                            @if($val->pdf != null)
-                                                <a href="{{asset("uploads/$val->pdf")}}">PDF</a>
-                                            @endif
-                                        </td>
+
                                         <td>
 
                                             <form style="display: inline-block" action="{{ $route."/".$data->id."/destroy-image/".$val->id }}"
@@ -179,6 +169,7 @@
 
         $('#datatable').DataTable();
 
+
         $('#date').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -186,6 +177,7 @@
         }).datepicker("setDate", new Date());
 
         $(document).ready(function () {
+            $('#ui-datepicker-div').css('display','none');
             var i = 1;
             $('#add').click(function () {
                 i++;
@@ -195,9 +187,6 @@
                         <input type="file" name="images[]" class="form-control input-md input_open"/>
                     </div>
 
-                    <div class="col-xs-6">
-                        <input type="file" name="pdf[]" class="form-control input_close"/>
-                    </div>
                 </td>
 			    <td align="center"><button type="button" name="remove" id="${i}" class="btn btn-danger btn_remove"><i class="fas fa-minus"></i></button></td>
 			</tr>`);

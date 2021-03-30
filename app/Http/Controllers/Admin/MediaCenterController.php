@@ -182,12 +182,13 @@ class MediaCenterController extends Controller
         $media->save();
 
         $arr = array();
-        if (!empty($request->images) AND !empty($request->pdf)) {
+        if (!empty($request->images)) {
+           // dd($request->images);
             foreach ($request->images as $key => $val) {
                 $image = Storage::disk('public')->putFile('media/', new File($val));
-                $file = Storage::disk('public')->putFile('media/', new File($request->pdf[$key]));
+//                $file = Storage::disk('public')->putFile('media/', new File($request->pdf[$key]));
                 $arr[$key]['image'] = $image;
-                $arr[$key]['pdf'] = $file;
+//                $arr[$key]['pdf'] = $file;
             }
             $media->images()->createMany($arr);
         }
