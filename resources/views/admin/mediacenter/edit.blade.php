@@ -43,7 +43,7 @@
                                 <p class="invalid-feedback text-danger" role="alert"><strong>{{ $message }}</strong></p>
                                 @enderror
                                 <input type="text" name="date" required placeholder="yyyy-mm-dd" id="date"
-                                       class="form-control" value="{{$data->date}}">
+                                       class="form-control" value="{{date('m/d/Y',strtotime($data->date))}}">
                             </div>
                             <div class="form-group">
                                 <label for="title">Details Title <strong class="text-danger"> &#42; </strong> </label>
@@ -174,7 +174,7 @@
             autoclose: true,
             todayHighlight: true,
             format: 'yyyy-mm-dd',
-        }).datepicker("setDate", new Date());
+        });
 
         $(document).ready(function () {
             $('#ui-datepicker-div').css('display','none');
